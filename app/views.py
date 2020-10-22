@@ -53,3 +53,48 @@ class HomeView(View):
         return render(request, 'app/home.html', {
             'form': 'form'
         })
+
+# 書籍詳細ページ
+
+class DetailView(View):
+    def get(self, request, *args, **kwargs):
+        isbn = self.kwargs['isbn']
+        params = {
+            'isbn': isbn
+        }
+
+        items = get_api_data(params)
+        items = items[0]
+        item = items['Item']
+        title = item['title']
+        image = item['largeImageUrl']
+        author = item['author']
+        itemPrice = item['itemPrice']
+        salesDate = item['salesDate']
+        publisherName = item['publisherName']
+        size = item['size']
+        isbn = item['isbn']
+        itemCaption = item['itemCaption']
+        itemUrl = item['itemUrl']
+        reviewAverage = item['reviewAverage']
+        reviewCount = item['reviewCount']
+
+        book_data = {
+            'title': title,
+            'image': image,
+            'author': author,
+            'itemPrice': itemPrice,
+            'salesDate': salesDate,
+            'publisherName': publisherName,
+            'size': size,
+            'isbn': isbn,
+            'itemCaption': itemCaption,
+            'itemUrl': itemUrl,
+            'reviewAverage': reviewAverage,
+            'reviewCount': reviewCount,
+            'average': float(reviewAverage) * 20,
+        }
+
+        return render(request, 'app/detail.html', {
+            'book_data': book_data
+        })
