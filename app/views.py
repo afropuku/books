@@ -56,6 +56,7 @@ class HomeView(View):
 
 # 書籍詳細ページ
 
+
 class DetailView(View):
     def get(self, request, *args, **kwargs):
         isbn = self.kwargs['isbn']

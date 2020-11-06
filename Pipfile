@@ -6,11 +6,13 @@ verify_ssl = true
 [dev-packages]
 autopep8 = "*"
 flake8 = "*"
+django-extensions = "*"
 
 [packages]
 django = "*"
 django-widget-tweaks = "*"
 requests = "*"
+django-environ = "*"
 
 [requires]
 python_version = "3.8"
